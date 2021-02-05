@@ -1,0 +1,38 @@
+{
+  "name": "maptix",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "watch": "webpack --config src/userland/webpack/webpack.common.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antriksh123/Maptix.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antriksh123/Maptix/issues"
+  },
+  "homepage": "https://github.com/antriksh123/Maptix#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "@babel/preset-react": "^7.12.13",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.0.1",
+    "electron": "^11.2.2",
+    "sass": "^1.32.6",
+    "sass-loader": "^11.0.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.20.2",
+    "webpack-cli": "^4.5.0"
+  },
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
