@@ -3,6 +3,8 @@ const path = require('path')
 const getWindowPosition = require("./utils/getWindowPosition.js")
 const assetsDirectory = path.join(__dirname, 'assets')
 
+require('electron-reload')(__dirname);
+
 let tray = undefined
 let window = undefined
 
@@ -72,7 +74,3 @@ const showWindow = () => {
   window.show()
   window.focus()
 }
-
-ipcMain.on('show-window', () => {
-  showWindow()
-})
