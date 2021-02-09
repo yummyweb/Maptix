@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, Tray } = require('electron')
+const { app, BrowserWindow, globalShortcut, Tray } = require('electron')
 const path = require('path')
 const getWindowPosition = require("./utils/getWindowPosition.js")
 const assetsDirectory = path.join(__dirname, 'assets')
@@ -12,6 +12,9 @@ let window = undefined
 app.dock.hide()
 
 app.on('ready', () => {
+  globalShortcut.register('Alt+CommandOrControl+I', () => {
+    console.log('Electron loves global shortcuts!')
+  })
   createTray()
   createWindow()
 })
