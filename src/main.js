@@ -1,9 +1,11 @@
-const { app, BrowserWindow, globalShortcut, Tray } = require('electron')
-const path = require('path')
-const getWindowPosition = require("./utils/getWindowPosition.js")
-const assetsDirectory = path.join(__dirname, 'assets')
+import { app, BrowserWindow, globalShortcut, Tray } from 'electron'
+import path from 'path'
+import getWindowPosition from "./utils/getWindowPosition.js"
+import assetsDirectory from path.join(__dirname, 'assets')
 
-require('electron-reload')(__dirname);
+import electronReload from 'electron-reload'
+
+electronReload(__dirname)
 
 let tray = undefined
 let window = undefined

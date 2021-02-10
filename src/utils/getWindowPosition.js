@@ -11,4 +11,4 @@ const getWindowPosition = (window, tray) => {
     return {x: x, y: y}
 }
 
-module.exports = getWindowPosition
+export default getWindowPosition
