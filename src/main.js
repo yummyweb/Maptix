@@ -1,7 +1,8 @@
 import { app, BrowserWindow, globalShortcut, Tray } from 'electron'
 import path from 'path'
 import getWindowPosition from "./utils/getWindowPosition.js"
-import assetsDirectory from path.join(__dirname, 'assets')
+
+const assetsDir = path.join(__dirname, 'assets')
 
 import electronReload from 'electron-reload'
 
@@ -27,7 +28,7 @@ app.on('window-all-closed', () => {
 })
 
 const createTray = () => {
-  tray = new Tray(path.join(assetsDirectory, 'logo_small.png'))
+  tray = new Tray(path.join(assetsDir, 'logo_small.png'))
   tray.on('right-click', toggleWindow)
   tray.on('double-click', toggleWindow)
   tray.on('click', function (event) {
