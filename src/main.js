@@ -1,8 +1,6 @@
-import { app, BrowserWindow, globalShortcut, Tray } from 'electron'
+import { app, BrowserWindow, globalShortcut, ipcMain, Tray } from 'electron'
 import path from 'path'
 import getWindowPosition from "./utils/getWindowPosition.js"
-import open from 'open'
-import username from 'username'
 
 const assetsDir = path.join(__dirname, 'assets')
 
@@ -17,14 +15,6 @@ let window = undefined
 app.dock.hide()
 
 app.on('ready', () => {
-  globalShortcut.register('Alt+CommandOrControl+I', () => {
-    if (process.platform === "darwin") {
-      open("/Applications/Discord.app")
-    }
-    else if (process.platform === "win32") {
-      open('C:\\Users\\' + username.sync() + '\\Application')
-    }
-  })
   createTray()
   createWindow()
 })
@@ -60,7 +50,9 @@ const createWindow = () => {
     webPreferences: {
       // Prevents renderer process code from not running when window is
       // hidden
-      backgroundThrottling: false
+      backgroundThrottling: false,
+      contextIsolation: true,
+      preload: './preload.js' 
     }
   })
   window.loadURL(`file://${path.join(__dirname, 'build/index.html')}`)
@@ -87,3 +79,14 @@ const showWindow = () => {
   window.show()
   window.focus()
 }
+
+ipcMain.handle('send-app-name', (args) => {
+  globalShortcut.register('Alt+CommandOrControl+I', () => {
+    if (process.platform === "darwin") {
+      open("/Applications/" + args.appName + ".app")
+    }
+    else if (process.platform === "win32") {
+      open('C:\\Users\\' + username.sync() + '\\Application')
+    }
+  })
+})
