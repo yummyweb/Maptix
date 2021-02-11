@@ -1,6 +1,7 @@
 import { app, BrowserWindow, globalShortcut, Tray } from 'electron'
 import path from 'path'
 import getWindowPosition from "./utils/getWindowPosition.js"
+import open from 'open'
 
 const assetsDir = path.join(__dirname, 'assets')
 
@@ -15,8 +16,10 @@ let window = undefined
 app.dock.hide()
 
 app.on('ready', () => {
-  globalShortcut.register('Alt+CommandOrControl+I', () => {
-    console.log('Electron loves global shortcuts!')
+  globalShortcut.register('Alt+CommandOrControl+I', async () => {
+    if (process.platform === "darwin") {
+      open("/Applications/Discord.app")
+    }
   })
   createTray()
   createWindow()
