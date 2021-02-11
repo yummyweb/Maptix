@@ -1,6 +1,8 @@
 import { app, BrowserWindow, globalShortcut, ipcMain, Tray } from 'electron'
 import path from 'path'
 import getWindowPosition from "./utils/getWindowPosition.js"
+import open from 'open'
+import username from 'username'
 
 const assetsDir = path.join(__dirname, 'assets')
 
