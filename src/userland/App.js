@@ -14,6 +14,7 @@ export default function App() {
           <li>Discord</li>
           <li>Safari</li>
           <li>VS Code</li>
+          <li>Sublime Text</li> 
           <li>Sublime Text</li>
         </ol>
       </div>
