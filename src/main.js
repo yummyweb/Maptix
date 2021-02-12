@@ -1,6 +1,6 @@
 import { app, BrowserWindow, globalShortcut, ipcMain, Tray } from 'electron'
 import path from 'path'
-import getWindowPosition from "./utils/getWindowPosition.js"
+import showWindow from './utils/showWindow'
 import open from 'open'
 import username from 'username'
 
@@ -69,13 +69,6 @@ const toggleWindow = () => {
   } else {
     showWindow()
   }
-}
-
-const showWindow = () => {
-  const position = getWindowPosition(window, tray)
-  window.setPosition(position.x, position.y, false)
-  window.show()
-  window.focus()
 }
 
 ipcMain.handle('send-app-name', (event, args) => {
