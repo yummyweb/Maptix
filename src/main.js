@@ -54,7 +54,7 @@ const createWindow = () => {
       // hidden
       backgroundThrottling: false,
       nodeIntegration: true,
-      devTools: false
+      //devTools: false
       // contextIsolation: true,
       // preload: path.join(app.getAppPath(), './preload.js')
     }
@@ -90,4 +90,12 @@ ipcMain.handle('add-shortcut', (_event, args) => {
       open('C:\\Users\\' + username.sync() + '\\Application')
     }
   })
+})
+
+ipcMain.on('get-shortcut-data', (event, _args) => {
+  if (!store.get(machineIdSync())) {
+    event.reply('send-hortcut-data', null)
+  }
+  
+  event.reply('send-shortcut-data', store.get(machineIdSync()))
 })

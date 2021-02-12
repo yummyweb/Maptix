@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { render, get } from './renderer.js'
+import { render, on, send } from './renderer.js'
 
 export default function App() {
   const [appName, setAppName] = useState("")
@@ -10,25 +10,24 @@ export default function App() {
     setAppName("")
   }
 
-  render('send-shortcut-data', {})
+  send('get-shortcut-data', null)
 
   return (
     <>
-      <div class="shortcut-form">
-        <input value={appName} onChange={e => setAppName(e.target.value)} class="app-name-input" />
-        <input value={shortcut} onChange={e => setShortcut(e.target.value)} class="shortcut-input" />
-        <button onClick={e => submitFunc()} class="shortcut-button">Add</button>
+      <div className="shortcut-form">
+        <input value={appName} onChange={e => setAppName(e.target.value)} className="app-name-input" />
+        <input value={shortcut} onChange={e => setShortcut(e.target.value)} className="shortcut-input" />
+        <button onClick={e => submitFunc()} className="shortcut-button">Add</button>
       </div>
       <div>
         <p>My Mappings:</p>
         <ol>
-          {get('send-shortcut-data', (data) => {
-            console.log(data)
-            if (data) {
-              data.appName.map((name) => {
-                return <li>{ name }</li>
-              })
-            }
+          {on('send-shortcut-data', (_event, data) => { 
+            data.appName.map(name => {
+              return (
+                <li>{ name }</li>
+              )
+            })
           })}
         </ol>
       </div>
