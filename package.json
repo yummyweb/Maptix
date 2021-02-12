@@ -27,6 +27,7 @@
     "babel-loader": "^8.2.2",
     "css-loader": "^5.0.1",
     "electron": "^11.2.2",
+    "electron-builder": "^22.9.1",
     "sass": "^1.32.6",
     "sass-loader": "^11.0.0",
     "spectron": "^13.0.0",
