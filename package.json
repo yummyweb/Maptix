@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "electron-reload": "^1.5.0",
+    "electron-store": "^7.0.2",
     "esm": "^3.2.25",
     "node-machine-id": "^1.1.12",
     "open": "^7.4.0",

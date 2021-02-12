@@ -3,16 +3,18 @@ import render from './renderer.js'
 
 export default function App() {
   const [appName, setAppName] = useState("")
+  const [shortcut, setShortcut] = useState("")
 
   const submitFunc = () => {
-    render('send-app-name', {appName})
+    render('add-shortcut', {appName, shortcut})
     setAppName("")
   }
 
   return (
     <>
       <div class="shortcut-form">
-        <input value={appName} onChange={e => setAppName(e.target.value)} class="shortcut-input" />
+        <input value={appName} onChange={e => setAppName(e.target.value)} class="app-name-input" />
+        <input value={shortcut} onChange={e => setShortcut(e.target.value)} class="shortcut-input" />
         <button onClick={e => submitFunc()} class="shortcut-button">Add</button>
       </div>
       <div>

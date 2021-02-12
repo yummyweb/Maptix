@@ -12,15 +12,26 @@ p {
     font-weight: bold;
 }
 
-.shortcut-input {
-    padding: 5px;
+.app-name-input {
+    padding: 10px;
+    border-color: none;
+    border: 1px solid rgb(81, 166, 223);
     border-radius: 10px;
-    border-width: 1px;
+    margin-bottom: 10px; 
+}
+
+.shortcut-input {
+    padding: 10px;
+    border-color: none;
+    border: 1px solid rgb(81, 166, 223);
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 .shortcut-form {
     display: flex;
     justify-content: space-around;
+    flex-direction: column;
     margin-top: 20px;
 }
 

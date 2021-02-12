@@ -3,6 +3,7 @@ import path from 'path'
 import showWindow from './utils/showWindow'
 import open from 'open'
 import username from 'username'
+import Store from 'electron-store'
 
 const assetsDir = path.join(__dirname, 'assets')
 
@@ -71,7 +72,7 @@ const toggleWindow = () => {
   }
 }
 
-ipcMain.handle('send-app-name', (event, args) => {
+ipcMain.handle('add-shortcut', (_event, args) => {
   globalShortcut.register('Alt+CommandOrControl+I', () => {
     if (process.platform === "darwin") {
       open("/Applications/" + args.appName + ".app")
