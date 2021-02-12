@@ -6,6 +6,7 @@ export default function App() {
 
   const submitFunc = () => {
     render('send-app-name', {appName})
+    setAppName("")
   }
 
   return (

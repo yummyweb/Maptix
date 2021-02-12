@@ -79,8 +79,6 @@ const showWindow = () => {
 }
 
 ipcMain.handle('send-app-name', (event, args) => {
-  console.log("hey")
-  console.log(args)
   globalShortcut.register('Alt+CommandOrControl+I', () => {
     if (process.platform === "darwin") {
       open("/Applications/" + args.appName + ".app")
