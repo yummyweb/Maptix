@@ -27,22 +27,10 @@ export default function App() {
       <div>
         <p>My Mappings:</p>
         <ol>
-          {/* {on('send-shortcut-data', (_event, data) => { 
-            data.appName.map(name => {
-              console.log(name)
-              return (
-                <li>name</li>
-              )
-            })
-          })} */}
           {
-            store.get("appName").map((name, index) => {
+            Object.keys(store.store).map(function(key, index) {
               return (
-                <>
-                  <li key={name}>
-                    { name } - <button class="delete-button">Delete</button>
-                  </li>
-                </>
+                <li>{ key } - <button onClick={() => store.delete(key)} class="delete-button">Delete</button></li>
               )
             })
           }
@@ -51,5 +39,3 @@ export default function App() {
     </>
   )
 }
-
-// { store.get("shortcuts")[index] }

@@ -4,7 +4,6 @@ import showWindow from './utils/showWindow'
 import open from 'open'
 import username from 'username'
 import Store from 'electron-store'
-import { machineIdSync } from 'node-machine-id'
 
 const assetsDir = path.join(__dirname, 'assets')
 
@@ -78,31 +77,16 @@ const toggleWindow = () => {
 }
 
 ipcMain.handle('add-shortcut', (_event, args) => {
-  if (!store.get("shortcuts") && !store.get("appName")) {
-    store.set("shortcuts", [])
-    store.set("appName", [])
-  }
+  store.set(args.appName, args.shortcut) 
 
-  let shortcuts =  store.get("shortcuts")
-  let appName = store.get("appName")
-
-  store.set("shortcuts", [...shortcuts, args.shortcut]) 
-  store.set("appName", [...appName, args.appName])
-
-  globalShortcut.register('Alt+CommandOrControl+D', () => {
-    if (process.platform === "darwin") {
-      open("/Applications/" + args.appName + ".app")
-    }
-    else if (process.platform === "win32") {
-      open('C:\\Users\\' + username.sync() + '\\Application')
-    }
+  Object.keys(store.store).map(function(key, index) {
+    globalShortcut.register(store.store[key], () => {
+      if (process.platform === "darwin") {
+        open("/Applications/" + key + ".app")
+      }
+      else if (process.platform === "win32") {
+        open('C:\\Users\\' + username.sync() + '\\Application')
+      }
+    })
   })
 })
-
-// ipcMain.on('get-shortcut-data', (event, _args) => {
-//   if (!store.get(machineIdSync())) {
-//     event.reply('send-hortcut-data', null)
-//   }
-  
-//   event.reply('send-shortcut-data', store.get(machineIdSync()))
-// })
