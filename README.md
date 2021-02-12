@@ -1,6 +1,6 @@
 ## Maptix
 
-### Tech Stack
+### Documentation
 
 For the frontend, we have used React.js. The React.js contents can be found in `src/userland`. The userland folder contains all the code for the frontend/user.
 
