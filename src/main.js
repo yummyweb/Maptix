@@ -67,7 +67,7 @@ const toggleWindow = () => {
   if (window.isVisible()) {
     window.hide()
   } else {
-    showWindow()
+    showWindow(window, tray)
   }
 }
 

@@ -1,6 +1,6 @@
 import getWindowPosition from './getWindowPosition'
 
-const showWindow = () => {
+const showWindow = (window, tray) => {
     const position = getWindowPosition(window, tray)
     window.setPosition(position.x, position.y, false)
     window.show()
