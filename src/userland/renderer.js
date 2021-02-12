@@ -4,4 +4,8 @@ async function render(signal, args) {
     await ipcRenderer.invoke(signal, args)
 }
 
-export default render
+function get(signal, cb) {
+    ipcRenderer.on(signal, data => cb(data))
+}
+
+export { get, render }

@@ -23,7 +23,7 @@ const store = new Store();
 
 app.on('ready', () => {
   createTray()
-  createWindow()
+  createWindow() 
 })
 
 // Quit the app when the window is closed
@@ -78,10 +78,10 @@ const toggleWindow = () => {
 
 ipcMain.handle('add-shortcut', (_event, args) => {
   if (!store.get(machineIdSync())) {
-    store.set(machineIdSync(), {"shortcuts": {}})
+    store.set(machineIdSync(), {"shortcuts": [args.shortcut], "appName": [args.appName]})
   }
   
-  globalShortcut.register('Alt+CommandOrControl+I', () => {
+  globalShortcut.register('Alt+CommandOrControl+D', () => {
     if (process.platform === "darwin") {
       open("/Applications/" + args.appName + ".app")
     }

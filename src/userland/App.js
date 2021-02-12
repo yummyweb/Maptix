@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import render from './renderer.js'
+import { render, get } from './renderer.js'
 
 export default function App() {
   const [appName, setAppName] = useState("")
@@ -9,6 +9,8 @@ export default function App() {
     render('add-shortcut', {appName, shortcut})
     setAppName("")
   }
+
+  render('send-shortcut-data', {})
 
   return (
     <>
@@ -20,12 +22,14 @@ export default function App() {
       <div>
         <p>My Mappings:</p>
         <ol>
-          <li>Chrome</li>
-          <li>Discord</li>
-          <li>Safari</li>
-          <li>VS Code</li>
-          <li>Sublime Text</li> 
-          <li>Sublime Text</li>
+          {get('send-shortcut-data', (data) => {
+            console.log(data)
+            if (data) {
+              data.appName.map((name) => {
+                return <li>{ name }</li>
+              })
+            }
+          })}
         </ol>
       </div>
     </>
