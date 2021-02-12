@@ -53,7 +53,8 @@ const createWindow = () => {
       // Prevents renderer process code from not running when window is
       // hidden
       backgroundThrottling: false,
-      nodeIntegration: true
+      nodeIntegration: true,
+      devTools: false
       // contextIsolation: true,
       // preload: path.join(app.getAppPath(), './preload.js')
     }
