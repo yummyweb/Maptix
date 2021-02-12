@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import globalShortcut from '../main'
-import open from 'open'
-import username from 'username'
+import render from './renderer.js'
 
 export default function App() {
-  const [appName, setAppName] = useState(null)
+  const [appName, setAppName] = useState("")
+
+  const submitFunc = () => {
+    render('send-app-name', {appName})
+  }
 
   return (
     <>
       <div class="shortcut-form">
         <input value={appName} onChange={e => setAppName(e.target.value)} class="shortcut-input" />
-        <button class="shortcut-button">Add</button>
+        <button onClick={e => submitFunc()} class="shortcut-button">Add</button>
       </div>
       <div>
         <p>My Mappings:</p>

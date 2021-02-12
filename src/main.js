@@ -32,11 +32,6 @@ const createTray = () => {
   tray.on('double-click', toggleWindow)
   tray.on('click', function (event) {
     toggleWindow()
-
-    // Show devtools when command clicked
-    if (window.isVisible() && process.defaultApp && event.metaKey) {
-      window.openDevTools({mode: 'detach'})
-    }
   })
 }
 
@@ -53,8 +48,9 @@ const createWindow = () => {
       // Prevents renderer process code from not running when window is
       // hidden
       backgroundThrottling: false,
-      contextIsolation: true,
-      preload: './preload.js' 
+      nodeIntegration: true
+      // contextIsolation: true,
+      // preload: path.join(app.getAppPath(), './preload.js')
     }
   })
   window.loadURL(`file://${path.join(__dirname, 'build/index.html')}`)
@@ -82,7 +78,9 @@ const showWindow = () => {
   window.focus()
 }
 
-ipcMain.handle('send-app-name', (args) => {
+ipcMain.handle('send-app-name', (event, args) => {
+  console.log("hey")
+  console.log(args)
   globalShortcut.register('Alt+CommandOrControl+I', () => {
     if (process.platform === "darwin") {
       open("/Applications/" + args.appName + ".app")
