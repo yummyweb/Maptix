@@ -4,11 +4,12 @@ import showWindow from './utils/showWindow'
 import open from 'open'
 import username from 'username'
 import Store from 'electron-store'
+import { machineIdSync } from 'node-machine-id'
 
 const assetsDir = path.join(__dirname, 'assets')
 
+// For hot reload on the userland
 import electronReload from 'electron-reload'
-
 electronReload(__dirname)
 
 let tray = undefined
@@ -16,6 +17,9 @@ let window = undefined
 
 // Don't show the app in the dock
 app.dock.hide()
+
+// Creating new electron-store instance
+const store = new Store();
 
 app.on('ready', () => {
   createTray()
@@ -73,6 +77,10 @@ const toggleWindow = () => {
 }
 
 ipcMain.handle('add-shortcut', (_event, args) => {
+  if (!store.get(machineIdSync())) {
+    store.set(machineIdSync(), {"shortcuts": {}})
+  }
+  
   globalShortcut.register('Alt+CommandOrControl+I', () => {
     if (process.platform === "darwin") {
       open("/Applications/" + args.appName + ".app")
