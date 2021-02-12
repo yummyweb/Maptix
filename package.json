@@ -44,7 +44,7 @@
   "build": {
     "appId": "your.id",
     "mac": {
-      "category": "public.app-category.utilities"
+      "category": "public.app-category.productivity"
     },
     "dmg": {
       "backgroundColor": "#8AE472"
