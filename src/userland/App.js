@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import { render, on, send } from './renderer.js'
+import { render, _on, send } from './renderer.js'
+import Store from 'electron-store'
+import { machineIdSync } from 'node-machine-id'
 
 export default function App() {
   const [appName, setAppName] = useState("")
   const [shortcut, setShortcut] = useState("")
 
+  const store = new Store()
+
   const submitFunc = () => {
     render('add-shortcut', {appName, shortcut})
     setAppName("")
+    setShortcut("")
   }
 
   send('get-shortcut-data', null)
@@ -22,15 +27,29 @@ export default function App() {
       <div>
         <p>My Mappings:</p>
         <ol>
-          {on('send-shortcut-data', (_event, data) => { 
+          {/* {on('send-shortcut-data', (_event, data) => { 
             data.appName.map(name => {
+              console.log(name)
               return (
-                <li>{ name }</li>
+                <li>name</li>
               )
             })
-          })}
+          })} */}
+          {
+            store.get("appName").map((name, index) => {
+              return (
+                <>
+                  <li key={name}>
+                    { name } - <button class="delete-button">Delete</button>
+                  </li>
+                </>
+              )
+            })
+          }
         </ol>
       </div>
     </>
   )
 }
+
+// { store.get("shortcuts")[index] }

@@ -78,10 +78,17 @@ const toggleWindow = () => {
 }
 
 ipcMain.handle('add-shortcut', (_event, args) => {
-  if (!store.get(machineIdSync())) {
-    store.set(machineIdSync(), {"shortcuts": [args.shortcut], "appName": [args.appName]})
+  if (!store.get("shortcuts") && !store.get("appName")) {
+    store.set("shortcuts", [])
+    store.set("appName", [])
   }
-  
+
+  let shortcuts =  store.get("shortcuts")
+  let appName = store.get("appName")
+
+  store.set("shortcuts", [...shortcuts, args.shortcut]) 
+  store.set("appName", [...appName, args.appName])
+
   globalShortcut.register('Alt+CommandOrControl+D', () => {
     if (process.platform === "darwin") {
       open("/Applications/" + args.appName + ".app")
@@ -92,10 +99,10 @@ ipcMain.handle('add-shortcut', (_event, args) => {
   })
 })
 
-ipcMain.on('get-shortcut-data', (event, _args) => {
-  if (!store.get(machineIdSync())) {
-    event.reply('send-hortcut-data', null)
-  }
+// ipcMain.on('get-shortcut-data', (event, _args) => {
+//   if (!store.get(machineIdSync())) {
+//     event.reply('send-hortcut-data', null)
+//   }
   
-  event.reply('send-shortcut-data', store.get(machineIdSync()))
-})
+//   event.reply('send-shortcut-data', store.get(machineIdSync()))
+// })

@@ -41,3 +41,15 @@ p {
     border: none;
     border-radius: 5px;
 }
+
+.delete-button {
+    color: white;
+    padding: 5px;
+    background-color: rgb(231, 55, 55);
+    border: none;
+    border-radius: 5px; 
+}
+
+li {
+    margin-top: 5px;
+}
