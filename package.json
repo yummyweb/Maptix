@@ -46,12 +46,12 @@
     "username": "^5.1.0"
   },
   "build": {
-    "appId": "your.id",
+    "appId": "co.maptix",
     "mac": {
       "category": "public.app-category.productivity"
     },
     "dmg": {
-      "backgroundColor": "#8AE472"
+      "backgroundColor": "#8ae472"
     },
     "linux": {
       "category": "Utility"
