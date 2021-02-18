@@ -1,4 +1,4 @@
-import { app, BrowserWindow, globalShortcut, ipcMain, Tray } from 'electron'
+import Electron, { app, BrowserWindow, globalShortcut, ipcMain, Tray } from 'electron'
 import path from 'path'
 import showWindow from './utils/showWindow'
 import open from 'open'
@@ -15,7 +15,9 @@ let tray = undefined
 let window = undefined
 
 // Don't show the app in the dock
-app.dock.hide()
+// if (process.platform === "darwin") {
+//   app.dock.hide()
+// }
 
 // Creating new electron-store instance
 const store = new Store();
@@ -89,4 +91,8 @@ ipcMain.handle('add-shortcut', (_event, args) => {
       }
     })
   })
+})
+
+ipcMain.handle('close-app', (_event, _args) => {
+  app.exit()
 })

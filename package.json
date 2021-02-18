@@ -7,7 +7,7 @@
     "start": "electron .",
     "watch": "webpack --config src/userland/webpack/webpack.common.js --watch",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder -p never --win"
   },
   "repository": {
     "type": "git",
@@ -39,6 +39,7 @@
     "electron-reload": "^1.5.0",
     "electron-store": "^7.0.2",
     "esm": "^3.2.25",
+    "find-up": "^4.1.0",
     "node-machine-id": "^1.1.12",
     "open": "^7.4.0",
     "react": "^17.0.1",
@@ -47,14 +48,12 @@
   },
   "build": {
     "appId": "co.maptix",
-    "mac": {
-      "category": "public.app-category.productivity"
-    },
-    "dmg": {
-      "backgroundColor": "#8ae472"
-    },
-    "linux": {
-      "category": "Utility"
+    "win": {
+      "publisherName": "Maptix co.",
+      "target": [
+        "nsis",
+        "zip"
+      ]
     }
   }
 }
